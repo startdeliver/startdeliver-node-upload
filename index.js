@@ -32,7 +32,12 @@ exports.upload = function (file, opts) {
 			if (err) {
 				return reject(err);
 			}
-			resolve(body);
+			try {
+				let out = JSON.parse(body);
+				resolve(out);
+			} catch (e) {
+				resolve(body);
+			}
 		});
 
 	});
